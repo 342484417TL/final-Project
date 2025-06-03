@@ -16,7 +16,6 @@ public class Character {
     private int width, height;//dimention of the character image 
     private PApplet app;//the canvas used to used to display graphical element
     private PImage image;//image of the characters
-    private int num;
     
     public Character(PApplet P, int x, int y,String imagePath){
         this.app=P;
@@ -34,5 +33,7 @@ public class Character {
     //method that draw the image
     public void draw(){
         app.image(image, x, y);
+        app.fill(134,114,59);
+        app.rect(0, 400, 300, 200);
     }
 }
