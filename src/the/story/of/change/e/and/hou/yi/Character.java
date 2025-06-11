@@ -30,10 +30,12 @@ public class Character {
         x= x+dx;
         y= y+dy;
     }
+    
     //method that draw the image
     public void draw(){
         app.image(image, x, y);
         app.fill(134,114,59);
         app.rect(0, 400, 300, 200);
     }
+   
 }
