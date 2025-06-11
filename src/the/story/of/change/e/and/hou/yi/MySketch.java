@@ -19,10 +19,11 @@ public class MySketch extends PApplet{
     boolean arrowMoving = false;
     public float angle=0;
     float arrowSpeed=5;
+    int count=0;
     private Character[] sun;
     private int sun1Speed=2;
     private int sun2Speed=2;
-    private int[][] sunSpeed={{2,2}, {5,5}, {3,3}, {1,1},{0,2},{3,0}};
+    private int[][] sunSpeed={{1,1}, {5,5}, {3,3}, {1,1},{0,2},{3,0}};
     
     public void settings(){
         size(600,600);//Sets the size of the screen
@@ -32,7 +33,7 @@ public class MySketch extends PApplet{
         //Sets the background colour to white
         background(255);
         Houyi=new Character(this, 70, 30, "images/houyi.png");
-        arrow = new Arrow(this, 170, 110, "images/arrow.png");
+        arrow = new Arrow(this, 106, 230, "images/arrow.png");
         sun = new Character[10];
         sun[0]=new Character(this, 480, 30, "images/sun.png");
         sun[1]=new Character(this, 280, 80, "images/sun.png");
@@ -98,7 +99,7 @@ public class MySketch extends PApplet{
     }
 
     
-    public void scene1draw(){
+    public void scene2draw(){
         background(239,221,58);
         Houyi.draw();
         for(int i=0; i<10; i++){
@@ -120,22 +121,76 @@ public class MySketch extends PApplet{
             arrow.rotate(-5);
         } else if (keyCode == RIGHT){
             arrow.rotate(5);
-        }//else if(angle<=90){
-            //arrow.arrowmove(20, 34);
-        else if(keyCode==ENTER){
+        }else if(keyCode==' '){
            float rad = PApplet.radians(Arrow.angle); // get angle in radians
             float dx = (float)(Math.cos(rad) * 10);
             float dy = (float)(Math.sin(rad) * 10);
             arrow.startMoving(dx, dy); 
         }
     }
-
+    
+    public void ifColliding(){
+        if(arrow.isColliding(sun[0])){
+           sun[0].hidedraw();
+           arrow = new Arrow(this, 106, 230, "images/arrow.png");
+           arrow.draw();
+           count++;
+       }else if(arrow.isColliding(sun[1])){
+           sun[1].hidedraw();
+           arrow = new Arrow(this, 106, 230, "images/arrow.png");
+           arrow.draw(); 
+           count++;
+       }else if(arrow.isColliding(sun[2])){
+           sun[2].hidedraw();
+           arrow = new Arrow(this, 106, 230, "images/arrow.png");
+           arrow.draw(); 
+           count++;
+       }else if(arrow.isColliding(sun[3])){
+           sun[3].hidedraw();
+           arrow = new Arrow(this, 106, 230, "images/arrow.png");
+           arrow.draw(); 
+           count++;
+       }else if(arrow.isColliding(sun[4])){
+           sun[4].hidedraw();
+           arrow = new Arrow(this, 106, 230, "images/arrow.png");
+           arrow.draw(); 
+           count++;
+       }else if(arrow.isColliding(sun[5])){
+           sun[5].hidedraw();
+           arrow = new Arrow(this, 106, 230, "images/arrow.png");
+           arrow.draw(); 
+           count++;
+       }else if(arrow.isColliding(sun[6])){
+           sun[6].hidedraw();
+           arrow = new Arrow(this, 106, 230, "images/arrow.png");
+           arrow.draw(); 
+           count++;
+       }else if(arrow.isColliding(sun[7])){
+           sun[7].hidedraw();
+           arrow = new Arrow(this, 106, 230, "images/arrow.png");
+           arrow.draw(); 
+           count++;
+       }else if(arrow.isColliding(sun[8])){
+           sun[8].hidedraw();
+           arrow = new Arrow(this, 106, 230, "images/arrow.png");
+           arrow.draw(); 
+           count++;
+       }else if(arrow.isColliding(sun[9])){
+           sun[9].hidedraw();
+           arrow = new Arrow(this, 106, 230, "images/arrow.png");
+           arrow.draw(); 
+           count++;
+       }
+    }
 
     
     public void draw(){ 
-       //Houyi.draw();
-       scene1draw(); 
+       scene2draw(); 
        sunAnimations();
        arrow.update();
+       ifColliding();
+       if(count==9){
+           arrow = new Arrow(this, 0, 0, "images/arrow.png");
+       }
     }  
 }

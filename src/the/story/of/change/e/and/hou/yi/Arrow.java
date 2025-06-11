@@ -12,12 +12,8 @@ import processing.core.PImage;
  *
  * @author tina
  */
-public class Arrow {
-    public int x,y;//x and y coord
-    private int width, height;//dimention of the character image 
-    private PApplet app;//the canvas used to used to display graphical element
-    private PImage image;//image of the characters
-    public static float angle=0;
+public class Arrow extends Character{
+    public static float angle=-30;
     private boolean isMoving=false;
     private  float vx=0;
     private float vy=0;
@@ -25,13 +21,8 @@ public class Arrow {
     
     
     public Arrow(PApplet P, int x, int y,String imagePath){
-        this.app=P;
-        this.x=x;
-        this.y=y;
-        this.image=app.loadImage(imagePath);
-        this.width=image.width;
-        this.height=image.height;
-        this.image.resize(150, 150);
+        super(P, x, y,imagePath);
+        this.image.resize(108, 20);
     }
     //method that moves the object to a certain position
     public void arrowmove(float dx, float dy){
@@ -61,7 +52,16 @@ public class Arrow {
         }
     }
     
-    //method that draw the image
+    public boolean isColliding(Character other){
+        boolean isLeftOfRight= x<other.x+other.y;
+        boolean isRightOfLeft= x+width>other.x;
+        boolean isAboveOtherBottom=y<other.y+other.width;
+        boolean isBelowOtherTop=y+height>other.y;
+        return isLeftOfRight&&isRightOfLeft&&isAboveOtherBottom&&isBelowOtherTop;
+    }
+    
+    //method that draw the imageA
+    @Override
     public void draw() {
         app.pushMatrix();
         app.translate(x + image.width / 2, y + image.height / 2); // Move to image center

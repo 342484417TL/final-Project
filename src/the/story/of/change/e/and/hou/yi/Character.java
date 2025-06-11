@@ -13,9 +13,9 @@ import processing.core.PImage;
  */
 public class Character {
     public int x,y;//x and y coord
-    private int width, height;//dimention of the character image 
-    private PApplet app;//the canvas used to used to display graphical element
-    private PImage image;//image of the characters
+    protected int width, height;//dimention of the character image 
+    protected PApplet app;//the canvas used to used to display graphical element
+    protected PImage image;//image of the characters
     
     public Character(PApplet P, int x, int y,String imagePath){
         this.app=P;
@@ -29,6 +29,11 @@ public class Character {
     public void move(int dx, int dy){
         x= x+dx;
         y= y+dy;
+    }
+    
+    public void hidedraw(){
+        x=5000;
+        y=5000;
     }
     
     //method that draw the image
