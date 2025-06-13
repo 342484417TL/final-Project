@@ -13,16 +13,16 @@ import processing.core.PImage;
  * @author tina
  */
 public class Arrow extends Character{
-    public static float angle=-30;
-    private boolean isMoving=false;
+    public static float angles=-30;
+    private int angle;
+    private boolean isMoving=true;
     private  float vx=0;
     private float vy=0;
-    private float speed=5;
     
     
-    public Arrow(PApplet P, int x, int y,String imagePath){
+    public Arrow(PApplet P, int x, int y, int angle, String imagePath){
         super(P, x, y,imagePath);
-        this.image.resize(108, 20);
+        this.angle=angle;
     }
     //method that moves the object to a certain position
     public void arrowmove(float dx, float dy){
@@ -35,9 +35,9 @@ public class Arrow extends Character{
         y+=dy;
     }
     
-    public void rotate(float delta) {
-        angle += delta;
-        angle = PApplet.constrain(angle, -180, 180);
+    public void rotate(float angle) {
+        angles += angle;
+        angles = PApplet.constrain(angles, -180, 180);
     }
 
     public void startMoving(float dx, float dy){
@@ -52,10 +52,14 @@ public class Arrow extends Character{
         }
     }
     
+    public boolean isMoving(){
+        return isMoving;
+    }
+    
     public boolean isColliding(Character other){
-        boolean isLeftOfRight= x<other.x+other.y;
+        boolean isLeftOfRight= x<other.x+other.width;
         boolean isRightOfLeft= x+width>other.x;
-        boolean isAboveOtherBottom=y<other.y+other.width;
+        boolean isAboveOtherBottom=y<other.y+other.height;
         boolean isBelowOtherTop=y+height>other.y;
         return isLeftOfRight&&isRightOfLeft&&isAboveOtherBottom&&isBelowOtherTop;
     }
@@ -65,7 +69,7 @@ public class Arrow extends Character{
     public void draw() {
         app.pushMatrix();
         app.translate(x + image.width / 2, y + image.height / 2); // Move to image center
-        app.rotate(PApplet.radians(angle));                       // Rotate around center
+        app.rotate(PApplet.radians(angles));                       // Rotate around center
         app.imageMode(PApplet.CENTER);                            // Draw image from center
         app.image(image, 0, 0);                                    // Draw at transformed origin
         app.imageMode(PApplet.CORNER);                            // Reset to default
