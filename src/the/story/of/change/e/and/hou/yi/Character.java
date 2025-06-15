@@ -16,6 +16,7 @@ public class Character {
     protected int width, height;//dimention of the character image 
     protected PApplet app;//the canvas used to used to display graphical element
     protected PImage image;//image of the characters
+    private int fillcolour;
     
     public Character(PApplet P, int x, int y,String imagePath){
         this.app=P;
@@ -25,6 +26,17 @@ public class Character {
         this.width=image.width;
         this.height=image.height;
     }
+    
+    public Character(PApplet p, int x, int y,int width, int height,int fillcolour) {
+        this.app= p;
+        this.x= x;
+        this.y= y;
+        this.width = width;
+        this.height = height;
+        this.fillcolour = fillcolour;
+        //this.image = null;           // indicates “draw a rect”
+    }
+    
     //method that moves the object to a certain position
     public void move(int dx, int dy){
         x= x+dx;
@@ -34,6 +46,11 @@ public class Character {
     public void hidedraw(){
         x=5000;
         y=5000;
+    }
+    
+    public void drawingtimer(){
+        app.fill(fillcolour);
+        app.rect(x, y, width, height);
     }
     
     //method that draw the image

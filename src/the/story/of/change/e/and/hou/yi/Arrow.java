@@ -24,12 +24,14 @@ public class Arrow extends Character{
         super(P, x, y,imagePath);
         this.angle=angle;
     }
+    
     //method that moves the object to a certain position
     public void arrowmove(float dx, float dy){
         x+=dx;
         y+=dy;
     }
     
+    @Override
     public void move(int dx, int dy){
         x+=dx;
         y+=dy;

@@ -16,7 +16,11 @@ public class TheStoryOfChangeEAndHouYi {
     public static void main(String[] args) {
         // TODO code application logic here
         MySketch.main("the.story.of.change.e.and.hou.yi.MySketch");
+        //storyLines2(); 
+        //addingScore();
         
     }
     
 }
+
+
